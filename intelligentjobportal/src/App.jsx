@@ -3,12 +3,21 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PersonligeOpl from "./Jobansøger/PersonligeOpl";
 import Ansogning from "./Jobansøger/Ansogning";
 import Dokumenter from "./Jobansøger/Dokumenter";
+import "./App.css";
 
 
 export default function App() {
     return (
         <Router>
             <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
+                {/* Logo in top right */}
+                <img
+                    src="/.dotlegal.png"
+                    alt="Logo"
+                    className="app-logo"
+                />
+
+
                 {/* Navigation menu */}
                 <nav
                     style={{
@@ -18,13 +27,13 @@ export default function App() {
                         marginBottom: "20px",
                     }}
                 >
-                    <Link to="/personlige" style={{ padding: "10px", border: "1px solid black" }}>
+                    <Link to="/personlige" className="nav-link">
                         Personlige oplysninger
                     </Link>
-                    <Link to="/ansogning" style={{ padding: "10px", border: "1px solid black" }}>
+                    <Link to="/ansogning" className="nav-link">
                         Ansøgning
                     </Link>
-                    <Link to="/dokumenter" style={{ padding: "10px", border: "1px solid black" }}>
+                    <Link to="/dokumenter" className="nav-link">
                         Dokumenter
                     </Link>
                 </nav>

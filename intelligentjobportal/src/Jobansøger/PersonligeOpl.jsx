@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+ï»¿import React, { useState } from "react";
 import "../FormStyles.css";
 
 
@@ -11,13 +11,13 @@ export default function PersonligeOpl() {
         titel: "",
     });
 
-    // håndter ændringer i inputfelter
+    // hÃ¥ndter Ã¦ndringer i inputfelter
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // håndter submit
+    // hÃ¥ndter submit
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Form data:", formData);
@@ -56,7 +56,7 @@ export default function PersonligeOpl() {
                     </div>
 
                     <button type="submit" className="submit-btn">
-                        Næste
+                        NÃ¦ste
                     </button>
                 </form>
             </div>
