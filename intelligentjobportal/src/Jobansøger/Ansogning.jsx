@@ -38,9 +38,12 @@ export default function Ansogning() {
                             className="form-select"
                         >
                             <option value="">-- Vælg --</option>
-                            <option value="developer">Udvikler</option>
-                            <option value="designer">Designer</option>
-                            <option value="marketing">Marketing</option>
+                            <option value="design">Multimediedesign praktikant</option>
+                            <option value="udvikler">Frontend-udvikler/ UX-designer</option>
+                            <option value="compliance">Compliance- og GRC-specialist</option>
+                            <option value="kommunikation">Kommunikations- og contentstrateg</option>
+                            <option value="it">IT-support og systemadministrator</option>
+                            <option value="tech">Legal tech-udvikler</option>
                         </select>
                     </div>
 
