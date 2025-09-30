@@ -1,9 +1,9 @@
 ﻿import React, { useState } from "react";
 import "../FormStyles.css";
 
-
+// komponent til personlige oplysninger
 export default function PersonligeOpl() {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({ // initial state, alle felter tomme, bruges til at holde styr på inputværdier
         navn: "",
         adresse: "",
         telefon: "",
@@ -23,6 +23,7 @@ export default function PersonligeOpl() {
         console.log("Form data:", formData);
     };
 
+    // JSX til at rendre formen, med labels og inputfelter bundet til state, og en submit knap, der kalder handleSubmit ved klik
     return (
         <div className="page-container">
             <div className="form-box">

@@ -5,28 +5,18 @@ import Ansogning from "./Jobansøger/Ansogning";
 import Dokumenter from "./Jobansøger/Dokumenter";
 import "./App.css";
 
-
+// Hovedkomponent med routing og navigation, logo og styling, importerer undersider, definerer ruter og navigation links
 export default function App() {
     return (
         <Router>
-            <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
-                {/* Logo in top right */}
+            {/* Navigation menu med logo - strækker over hele siden */}
+            <nav className="navbar">
                 <img
-                    src="/.dotlegal.png"
+                    src="/dotlegal-logo.webp"
                     alt="Logo"
-                    className="app-logo"
+                    className="navbar-logo"
                 />
-
-
-                {/* Navigation menu */}
-                <nav
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        gap: "10px",
-                        marginBottom: "20px",
-                    }}
-                >
+                <div className="nav-links-container">
                     <Link to="/personlige" className="nav-link">
                         Personlige oplysninger
                     </Link>
@@ -36,9 +26,11 @@ export default function App() {
                     <Link to="/dokumenter" className="nav-link">
                         Dokumenter
                     </Link>
-                </nav>
+                </div>
+            </nav>
 
-                {/* Page content */}
+            {/* Page content */}
+            <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
                 <Routes>
                     <Route path="/personlige" element={<PersonligeOpl />} />
                     <Route path="/ansogning" element={<Ansogning />} />
