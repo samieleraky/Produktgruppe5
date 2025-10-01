@@ -81,3 +81,23 @@
         background-color: #f0f0f0;
         border-color: #646cff;
     }
+
+.corner-logo {
+    position: fixed; /* fast på skærmen */
+    top: 15px; /* lidt ned fra toppen */
+    right: 20px; /* lidt ind fra højre */
+    height: 80px; /* juster størrelse */
+    width: auto;
+    z-index: 1000; /* så det altid er øverst */
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    /* Horisontal gradient fra venstre (hvid) til højre (lilla) */
+    background: linear-gradient( to right, /* horisontal fra venstre mod højre */
+    #ffffff 0%, /* startfarve venstre */
+    #7070ff 100% /* slutfarve højre */
+    );
+    min-height: 100vh;
+}

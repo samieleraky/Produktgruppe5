@@ -1,5 +1,5 @@
 ﻿import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";  //Importer useNavigate som bruges til at navigere til en anden side ved klik på knappen (hooks)
+import { useNavigate } from "react-router-dom"; //Importer useNavigate som bruges til at navigere til en anden side ved klik på knappen (hooks)
 import "../FormStyles.css";
 
 

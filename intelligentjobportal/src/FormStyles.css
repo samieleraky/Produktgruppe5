@@ -75,6 +75,17 @@
         background: #535bf2;
     }
 
+/* On hover: red background */
+.delete-btn:hover {
+    background: #f55; /* bright red */
+}
+
+/* Optional: make it darker when clicked */
+.delete-btn:active {
+    background: #d33;
+    transform: scale(0.98);
+}
+
     /* når knappen trykkes ind*/
     .submit-btn:active {
         transform: scale(0.98);
@@ -108,3 +119,8 @@
         outline: none;
         box-shadow: 0 0 6px rgba(100,108,255,0.3);
     }
+
+
+
+
+    

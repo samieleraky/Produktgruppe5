@@ -71,7 +71,7 @@ export default function Ansogning() {
                         >
                             Forrige
                         </button>
-                        <button type="button" className="submit-btn" style={{ background: "#f55" }}>
+                        <button type="button" className="submit-btn delete-btn" >
                             Slet Ansøgning
                         </button>
                     </div>

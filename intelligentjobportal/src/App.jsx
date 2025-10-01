@@ -9,6 +9,14 @@ import "./App.css";
 export default function App() {
     return (
         <Router>
+            {/* Logo øverst til højre på ALLE sider */}
+            <img
+                src="/.dotlegal.png"
+                alt=".Legal"
+                className="corner-logo"
+            />
+
+
             {/* Navigation menu med logo - strækker over hele siden */}
             <nav className="navbar">
                 <img
@@ -27,6 +35,7 @@ export default function App() {
                         Dokumenter
                     </Link>
                 </div>
+               
             </nav>
 
             {/* Page content */}
