@@ -1,8 +1,10 @@
 ﻿import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importer useNavigate som bruges til at navigere til en anden side ved klik på knappen (hooks) }
 import "../FormStyles.css";
 
 export default function Ansogning() {
-    const [selectedJob, setSelectedJob] = useState(""); // valgt jobstilling
+    const [selectedJob, setSelectedJob] = useState("");
+    const navigate = useNavigate(); // navigation hook
 
     const handleJobChange = (e) => {
         setSelectedJob(e.target.value);
@@ -10,21 +12,19 @@ export default function Ansogning() {
 
     const handleFileUpload = (type) => {
         console.log(`Tilføj ${type}`);
-        // Her kan du åbne en fil-dialog eller håndtere upload
+        // evt. fil-upload logik her
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Valgt job:", selectedJob);
+        navigate("/dokumenter"); // går videre til dokumenter-siden
     };
 
     return (
         <div className="page-container">
             <div className="form-box">
                 <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Ansøgning</h2>
-                <p style={{ marginBottom: "20px", textAlign: "center" }}>
-                   
-                </p>
 
                 <form onSubmit={handleSubmit}>
                     {/* Vælg jobstilling */}
@@ -64,7 +64,13 @@ export default function Ansogning() {
                     {/* Navigation knapper */}
                     <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "10px" }}>
                         <button type="submit" className="submit-btn">Næste</button>
-                        <button type="button" className="submit-btn">Forrige</button>
+                        <button
+                            type="button"
+                            className="submit-btn"
+                            onClick={() => navigate("/personlige")} // går tilbage til personlige oplysninger
+                        >
+                            Forrige
+                        </button>
                         <button type="button" className="submit-btn" style={{ background: "#f55" }}>
                             Slet Ansøgning
                         </button>

@@ -1,8 +1,12 @@
 ﻿import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";  //Importer useNavigate som bruges til at navigere til en anden side ved klik på knappen (hooks)
 import "../FormStyles.css";
+
+
 
 // komponent til personlige oplysninger
 export default function PersonligeOpl() {
+    const navigate = useNavigate(); // Initialiser useNavigate hook
     const [formData, setFormData] = useState({ // initial state, alle felter tomme, bruges til at holde styr på inputværdier
         navn: "",
         adresse: "",
@@ -10,6 +14,8 @@ export default function PersonligeOpl() {
         email: "",
         titel: "",
     });
+
+
 
     // håndter ændringer i inputfelter
     const handleChange = (e) => {
@@ -21,7 +27,11 @@ export default function PersonligeOpl() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Form data:", formData);
+        navigate("/ansogning"); // Brug navigate til at gå til ansøgnings siden ved submit
     };
+
+    // Brug navigate til at gå til ansøgnings siden ved submit
+    navigate("/ansogning");
 
     // JSX til at rendre formen, med labels og inputfelter bundet til state, og en submit knap, der kalder handleSubmit ved klik
     return (

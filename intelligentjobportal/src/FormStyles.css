@@ -59,8 +59,8 @@
         /*submit knap styling*/
 .submit-btn {
     width: 100%;
-    background: #646cff;
-    color: #fff;
+    background: #fff;
+    color: #333;
     border: none;
     border-radius: 8px;
     padding: 0.9rem;
@@ -80,7 +80,7 @@
         transform: scale(0.98);
     }
 
-    /* animation for indfade af formular*/
+/* animation for indfade af formular */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -91,18 +91,20 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
 
-    .form-select {
-        padding: 0.75rem 1rem;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 1rem;
-        transition: all 0.2s ease;
-    }
+/* styling af select dropdown */
+.form-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
 
+    /* når dropdown er i fokus */
     .form-select:focus {
         border-color: #646cff;
         outline: none;
         box-shadow: 0 0 6px rgba(100,108,255,0.3);
     }
-}

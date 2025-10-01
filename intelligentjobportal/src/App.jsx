@@ -32,11 +32,13 @@ export default function App() {
             {/* Page content */}
             <div style={{ maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
                 <Routes>
+                    {/* Startside */}
+                    <Route path="/" element={<PersonligeOpl />} />
                     <Route path="/personlige" element={<PersonligeOpl />} />
                     <Route path="/ansogning" element={<Ansogning />} />
                     <Route path="/dokumenter" element={<Dokumenter />} />
-                    {/* Default route */}
-                    <Route path="*" element={<PersonligeOpl />} />
+                    {/* fallback route */}
+                    <Route path="*" element={<h2>404 - Siden blev ikke fundet</h2>} />
                 </Routes>
             </div>
         </Router>
