@@ -91,6 +91,7 @@
     z-index: 1000; /* så det altid er øverst */
 }
 
+
 body {
     margin: 0;
     font-family: system-ui, sans-serif;
@@ -100,4 +101,12 @@ body {
     #7070ff 100% /* slutfarve højre */
     );
     min-height: 100vh;
+}
+
+.form-subtitle {
+    color: #555;
+    font-size: 1rem;
+    margin-top: -0.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
 }
