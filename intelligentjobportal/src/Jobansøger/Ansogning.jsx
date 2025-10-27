@@ -44,14 +44,43 @@ export default function Ansogning() {
     };
 
     // Håndter form-submit
-    const handleSubmitAll = (e) => {
+    const handleSubmitAll = async (e) => {
         e.preventDefault();
 
-        console.log("Personlige oplysninger:", personligeData);
-        console.log("Valgt job:", selectedJob);
-        console.log("Filer:", files);
+        const formData = new FormData();
+        formData.append("Navn", personligeData.navn);
+        formData.append("Adresse", personligeData.adresse);
+        formData.append("Telefon", personligeData.telefon);
+        formData.append("Email", personligeData.email);
+        formData.append("Titel", personligeData.titel);
+        formData.append("Job", selectedJob);
+        formData.append("Ansogning", files.ansogning);
+        formData.append("CV", files.cv);
+        if (files.portefolje) formData.append("Portefolje", files.portefolje);
+        if (files.anbefaling) formData.append("Anbefaling", files.anbefaling);
 
-        alert("Ansøgning sendt! ✅ (Data logget i konsollen)");
+        try {
+            // Send data til backend API
+            const response = await fetch("http://localhost:5204/api/applications", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                alert("Ansøgning sendt! ✅");
+
+                //reset form
+                setPersonligeData({ navn: "", adresse: "", telefon: "", email: "", titel: "" });
+                setSelectedJob("");
+                setFiles({ ansogning: null, cv: null, portefolje: null, anbefaling: null });
+                setSamtykke(false);
+            } else {
+                alert("Fejl ved indsendelse ❌");
+            }
+        } catch (error) {
+            console.error("Fejl:", error);
+            alert("Serverfejl ❌");
+        }
     };
 
     return (
@@ -208,7 +237,7 @@ export default function Ansogning() {
                                 style={{ marginTop: "4px" }}
                             />
                             <span>
-                                Jeg giver hermed min samtykke til at .dotlegal må opbevare min ansøgning og dertilhørende dokumenter i de næste 6 måneder. Jeg er bekendt med at jeg til enhvert tidspunkt kan trække samtykket tilbage.{" "}
+                                Jeg giver hermed min samtykke til at .dotlegal må opbevare min ansøgning og dertilhørende dokumenter i de næste 6 måneder. Jeg er bekendt med at jeg til ethvert tidspunkt kan trække samtykket tilbage.{" "}
                                 <a href="https://www.dotlegal.com/en/privacy-policy" target="_blank" rel="noopener noreferrer">
                                     privatlivspolitik
                                 </a>.
