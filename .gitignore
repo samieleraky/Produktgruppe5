@@ -416,3 +416,12 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Backend (.NET)
+backend/bin/
+backend/obj/
+backend/Uploads/
+backend/*.user
+backend/.vs/
+backend/.vscode/
+backend/appsettings.Development.json
