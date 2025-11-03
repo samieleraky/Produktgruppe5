@@ -1,7 +1,9 @@
 ﻿import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Ansogning from "./Jobansøger/Ansogning";
+import Dashboard from "./HR/Dashboard";
 import "./App.css";
+
 
 export default function App() {
     return (
@@ -28,8 +30,13 @@ export default function App() {
                     {/* Forside = Ansøgningsside */}
                     <Route path="/" element={<Ansogning />} />
 
+                    
+                    {/* HR Dashboard */}
+                    <Route path="/hr-dashboard" element={<Dashboard />} />
+
                     {/* Fallback (404) */}
                     <Route path="*" element={<Ansogning />} />
+
                 </Routes>
             </div>
         </Router>

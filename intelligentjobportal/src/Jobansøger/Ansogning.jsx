@@ -3,7 +3,7 @@ import "../FormStyles.css";
 
 
 export default function Ansogning() {
-    // Personlige oplysninger
+    // Personal details. use state is used to store the data
     const [personligeData, setPersonligeData] = useState({
         navn: "",
         adresse: "",
@@ -12,13 +12,13 @@ export default function Ansogning() {
         titel: "",
     });
 
-    //Samtykke til databehandling
+    //alse by default because not given yet
     const [samtykke, setSamtykke] = useState(false);
 
-    // Jobvalg
+    // jobchoice. Empty string by default because no job is selected yet
     const [selectedJob, setSelectedJob] = useState("");
 
-    // Filuploads
+    // Fileuploads. null by default because no files are uploaded yet
     const [files, setFiles] = useState({
         ansogning: null,
         cv: null,
