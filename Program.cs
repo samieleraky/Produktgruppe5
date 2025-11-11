@@ -1,37 +1,48 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using dotlegalBackend.Messaging;
+using dotlegalBackend.Services;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.EntityFrameworkCore;
+using dotlegalBackend.Data;
+using dotlegalBackend.Messaging;
+using dotlegalBackend.Services;
 
-namespace Genspil___Drive_access_Spiloversigten
+var builder = WebApplication.CreateBuilder(args);
+
+// Config & DB
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Services
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+//builder.Services.AddSingleton<IMessageBus, RabbitMqMessageBus>();
+
+builder.Services.AddControllers()
+    .AddNewtonsoftJson();
+// CORS
+builder.Services.AddCors(options =>
 {
-    internal class Program
+    options.AddPolicy("AllowFrontend", policy =>
     {
-        // Marks an Asynchronous method: I can execute multiple things at a time
-        // and not have to finish executing the current thing in order to move on to next one. Useful for Http request
-        static async Task Main(string[] args)
-        {
-            // URL of the publicly accessible text file in Google Drive
-            string fileId = "1BWZME-CcRPyuUGS73lK6ZyAvt-iZBoBJ";
-            string fileUrl = $"https://drive.google.com/uc?id={fileId}";
+        policy.WithOrigins("http://localhost:3000", "http://localhost:5173")  // React default port
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
-            // Download the contents of the text file through HttpClient method
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    // I use GetStringAsync method to download the content of the txt.file to a string 
-                    string fileContents = await client.GetStringAsync(fileUrl);
+// Allow large uploads (tweak limits efter behov)
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 200_000_000; // f.eks. 200 MB
+});
 
-                    // Showcases the file content
-                    Console.WriteLine(fileContents);
-                }
-                catch (HttpRequestException e)
-                {
-                    Console.WriteLine($"Error: {e.Message}");
-                }
-            }
-        }
-    }
-}
+var app = builder.Build();
 
+app.UseCors("AllowFrontend"); // Enable CORS
 
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.Run();
