@@ -175,3 +175,4 @@ C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\obj\Debug\net8.0\re
 C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\obj\Debug\net8.0\dotlegalBackend.pdb
 C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\obj\Debug\net8.0\dotlegalBackend.genruntimeconfig.cache
 C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\obj\Debug\net8.0\ref\dotlegalBackend.dll
+C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\OpenAI.dll

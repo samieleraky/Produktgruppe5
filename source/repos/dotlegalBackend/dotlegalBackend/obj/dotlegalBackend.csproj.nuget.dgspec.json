@@ -71,6 +71,10 @@
               "target": "Package",
               "version": "[9.0.10, )"
             },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[7.1.2, )"
