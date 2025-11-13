@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("76859b62-b739-4b20-9c3a-27d03b5882bd")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotlegalBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c7691b7c11332df7648d959bc7c4a0ffe8e3add")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4314a90ece295a8d9733fa905008cbd9d66eee8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotlegalBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotlegalBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

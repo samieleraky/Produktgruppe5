@@ -45,7 +45,7 @@ namespace dotlegalBackend.Services
                 AnbefalingPath = anbefalingPath
             };
 
-            // 🧮 Brug AI-service til at beregne matchscore
+            // Brug AI-service til at beregne matchscore
             try
             {
                 double matchScore = await _aiService.CalculateMatchScoreAsync(dto);
@@ -57,7 +57,7 @@ namespace dotlegalBackend.Services
                 entity.MatchScore = new Random().Next(60, 90); // fallback
             }
 
-            // 💾 Gem i database
+            // Gem i database
             _context.Applications.Add(entity);
             await _context.SaveChangesAsync();
 
