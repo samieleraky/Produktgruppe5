@@ -424,4 +424,5 @@ backend/Uploads/
 backend/*.user
 backend/.vs/
 backend/.vscode/
+backend/appsettings.json
 backend/appsettings.Development.json
