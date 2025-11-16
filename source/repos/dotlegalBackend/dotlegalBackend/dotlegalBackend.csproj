@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>76859b62-b739-4b20-9c3a-27d03b5882bd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,8 +19,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="OpenAI" Version="2.0.0" />
+    <PackageReference Include="PdfPig" Version="0.1.12" />
     <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Xceed.Words.NET" Version="5.1.25458.6676" />
   </ItemGroup>
 
 </Project>
