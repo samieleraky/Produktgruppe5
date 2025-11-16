@@ -193,4 +193,5 @@ C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\ru
 C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\runtimes\win-arm64\native\libSkiaSharp.dll
 C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\runtimes\win-x64\native\libSkiaSharp.dll
 C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\runtimes\win-x86\native\libSkiaSharp.dll
-C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Bruger\source\repos\dotlegalBackend\dotlegalBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

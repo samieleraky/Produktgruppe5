@@ -7,5 +7,6 @@ namespace dotlegalBackend.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opts) : base(opts) { }
         public DbSet<Application> Applications { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using dotlegalBackend.Data;
 using dotlegalBackend.Dto;
 using dotlegalBackend.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotlegalBackend.Controllers
 {
+    //[Authorize(Roles ="HR")]
     [ApiController]
     [Route("api/[controller]")]
     public class ApplicationsController : ControllerBase
@@ -30,6 +32,7 @@ namespace dotlegalBackend.Controllers
 
         //  1. Opret ansøgning og beregn matchscore direkte
         [HttpPost]
+        [AllowAnonymous] // ✅ Alle kan indsende ansøgninger uden login
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] ApplicationCreateDto dto)
         {
@@ -57,6 +60,7 @@ namespace dotlegalBackend.Controllers
 
         // 📊 2. Hent top 10 ansøgninger baseret på matchscore
         [HttpGet("top10")]
+        [Authorize(Roles = "HR")]  // ✅ Kun HR kan få adgang
         public async Task<IActionResult> GetTop10()
         {
             var top10 = await _context.Applications
