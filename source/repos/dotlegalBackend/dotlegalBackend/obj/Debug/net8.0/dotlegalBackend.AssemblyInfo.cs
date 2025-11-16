@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotlegalBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4314a90ece295a8d9733fa905008cbd9d66eee8d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c90ce0b7b5dbcea81d70563730d035297c8fda01")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotlegalBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotlegalBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
