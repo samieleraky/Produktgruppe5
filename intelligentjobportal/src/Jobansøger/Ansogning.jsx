@@ -167,12 +167,12 @@ export default function Ansogning() {
                                 required
                             >
                                 <option value="">-- Vælg --</option>
-                                <option value="design">Multimediedesign praktikant</option>
-                                <option value="udvikler">Frontend-udvikler / UX-designer</option>
-                                <option value="compliance">Compliance- og GRC-specialist</option>
-                                <option value="kommunikation">Kommunikations- og contentstrateg</option>
-                                <option value="it">IT-support og systemadministrator</option>
-                                <option value="tech">Legal tech-udvikler</option>
+                                <option value="Multimediedesign praktikant">Multimediedesign praktikant</option>
+                                <option value="Frontend-udvikler / UX-designer">Frontend-udvikler / UX-designer</option>
+                                <option value="Compliance- og GRC-specialist">Compliance- og GRC-specialist</option>
+                                <option value="Kommunikations- og contentstrategi">Kommunikations- og contentstrategi</option>
+                                <option value="IT-support og systemadministrator">IT-support og systemadministrator</option>
+                                <option value="Legal tech-udvikler">Legal tech-udvikler</option>
                                 
                             </select>
                         </div>

@@ -30,9 +30,7 @@ export default function Dashboard() {
         );
     }
 
-    // -------------------------------------------------------
     // Fetch top candidates
-    // -------------------------------------------------------
     useEffect(() => {
         fetchTopCandidates();
     }, []);
@@ -49,7 +47,7 @@ export default function Dashboard() {
 
             if (response.ok) {
                 const data = await response.json();
-                setTopCandidates(data.slice(0, 5));
+                setTopCandidates(data.slice(0, 10));
             } else {
                 setError("Kunne ikke hente kandidater");
             }
@@ -61,9 +59,8 @@ export default function Dashboard() {
         }
     };
 
-    // -------------------------------------------------------
+    
     // Loading state
-    // -------------------------------------------------------
     if (loading) {
         return (
             <div className="page-container">
@@ -74,9 +71,8 @@ export default function Dashboard() {
         );
     }
 
-    // -------------------------------------------------------
+   
     // Error state
-    // -------------------------------------------------------
     if (error) {
         return (
             <div className="page-container">
@@ -90,14 +86,13 @@ export default function Dashboard() {
         );
     }
 
-    // -------------------------------------------------------
+   
     // MAIN DASHBOARD VIEW
-    // -------------------------------------------------------
     return (
         <div className="page-container">
             <div className="form-box" style={{ maxWidth: "1200px" }}>
                 <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
-                    Top 5 Kandidater
+                    Top 10 Kandidater
                 </h2>
 
                 {topCandidates.length === 0 ? (
