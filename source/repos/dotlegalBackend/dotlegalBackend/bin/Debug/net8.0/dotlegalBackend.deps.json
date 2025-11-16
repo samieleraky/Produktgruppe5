@@ -9,6 +9,7 @@
       "dotlegalBackend/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "DocumentFormat.OpenXml": "3.3.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.10",
           "Microsoft.EntityFrameworkCore": "9.0.10",
@@ -18,8 +19,7 @@
           "OpenAI": "2.0.0",
           "PdfPig": "0.1.12",
           "RabbitMQ.Client": "7.1.2",
-          "Swashbuckle.AspNetCore": "6.6.2",
-          "Xceed.Words.NET": "5.1.25458.6676"
+          "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
           "dotlegalBackend.dll": {}
@@ -65,6 +65,28 @@
           "lib/net6.0/BCrypt.Net-Next.dll": {
             "assemblyVersion": "4.0.3.0",
             "fileVersion": "4.0.3.0"
+          }
+        }
+      },
+      "DocumentFormat.OpenXml/3.3.0": {
+        "dependencies": {
+          "DocumentFormat.OpenXml.Framework": "3.3.0"
+        },
+        "runtime": {
+          "lib/net8.0/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
+          }
+        }
+      },
+      "DocumentFormat.OpenXml.Framework/3.3.0": {
+        "dependencies": {
+          "System.IO.Packaging": "8.0.1"
+        },
+        "runtime": {
+          "lib/net8.0/DocumentFormat.OpenXml.Framework.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.3.0.0"
           }
         }
       },
@@ -873,46 +895,6 @@
           }
         }
       },
-      "SkiaSharp/2.88.8": {
-        "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "2.88.8",
-          "SkiaSharp.NativeAssets.macOS": "2.88.8"
-        },
-        "runtime": {
-          "lib/net6.0/SkiaSharp.dll": {
-            "assemblyVersion": "2.88.0.0",
-            "fileVersion": "2.88.8.0"
-          }
-        }
-      },
-      "SkiaSharp.NativeAssets.macOS/2.88.8": {
-        "runtimeTargets": {
-          "runtimes/osx/native/libSkiaSharp.dylib": {
-            "rid": "osx",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "SkiaSharp.NativeAssets.Win32/2.88.8": {
-        "runtimeTargets": {
-          "runtimes/win-arm64/native/libSkiaSharp.dll": {
-            "rid": "win-arm64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/win-x64/native/libSkiaSharp.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/win-x86/native/libSkiaSharp.dll": {
-            "rid": "win-x86",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -1097,11 +1079,11 @@
           }
         }
       },
-      "System.IO.Packaging/4.5.0": {
+      "System.IO.Packaging/8.0.1": {
         "runtime": {
-          "lib/netstandard2.0/System.IO.Packaging.dll": {
-            "assemblyVersion": "4.0.3.0",
-            "fileVersion": "4.6.26515.6"
+          "lib/net8.0/System.IO.Packaging.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1024.46610"
           }
         }
       },
@@ -1241,53 +1223,6 @@
             "fileVersion": "6.0.21.52210"
           }
         }
-      },
-      "Xceed.Document.NET/5.1.25458.6676": {
-        "dependencies": {
-          "System.IO.Packaging": "4.5.0",
-          "Xceed.Drawing.NET": "1.0.25458.6676",
-          "Xceed.Pdf": "5.1.25458.6676"
-        },
-        "runtime": {
-          "lib/net5.0/Xceed.Document.NET.dll": {
-            "assemblyVersion": "5.1.25458.6676",
-            "fileVersion": "5.1.25458.6676"
-          }
-        }
-      },
-      "Xceed.Drawing.NET/1.0.25458.6676": {
-        "dependencies": {
-          "SkiaSharp": "2.88.8"
-        },
-        "runtime": {
-          "lib/net5.0/Xceed.Drawing.NET.dll": {
-            "assemblyVersion": "1.0.25458.6676",
-            "fileVersion": "1.0.25458.6676"
-          }
-        }
-      },
-      "Xceed.Pdf/5.1.25458.6676": {
-        "dependencies": {
-          "Xceed.Drawing.NET": "1.0.25458.6676"
-        },
-        "runtime": {
-          "lib/net5.0/Xceed.PDF.NET.dll": {
-            "assemblyVersion": "5.1.25458.6676",
-            "fileVersion": "5.1.25458.6676"
-          }
-        }
-      },
-      "Xceed.Words.NET/5.1.25458.6676": {
-        "dependencies": {
-          "Xceed.Document.NET": "5.1.25458.6676",
-          "Xceed.Drawing.NET": "1.0.25458.6676"
-        },
-        "runtime": {
-          "lib/net5.0/Xceed.Words.NET.dll": {
-            "assemblyVersion": "5.1.25458.6676",
-            "fileVersion": "5.1.25458.6676"
-          }
-        }
       }
     }
   },
@@ -1317,6 +1252,20 @@
       "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
+    },
+    "DocumentFormat.OpenXml/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JogRPJNiE6kKvbuCqVRX691pPWeGMqdQgjrUwRYkdpfkMmtElfqAgcRR73geYj7OtBeEpstldZXXzJw27LUI9w==",
+      "path": "documentformat.openxml/3.3.0",
+      "hashPath": "documentformat.openxml.3.3.0.nupkg.sha512"
+    },
+    "DocumentFormat.OpenXml.Framework/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R5CLzEoeyr7XDB7g3NTxRobcU19agaxVAhGZm+fZUShJGiU4bw8oUgnA2BNFepigJckfFMayOBMAbV3kDXNInA==",
+      "path": "documentformat.openxml.framework/3.3.0",
+      "hashPath": "documentformat.openxml.framework.3.3.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -1675,27 +1624,6 @@
       "path": "rabbitmq.client/7.1.2",
       "hashPath": "rabbitmq.client.7.1.2.nupkg.sha512"
     },
-    "SkiaSharp/2.88.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-bRkp3uKp5ZI8gXYQT57uKwil1uobb2p8c69n7v5evlB/2JNcMAXVcw9DZAP5Ig3WSvgzGm2YSn27UVeOi05NlA==",
-      "path": "skiasharp/2.88.8",
-      "hashPath": "skiasharp.2.88.8.nupkg.sha512"
-    },
-    "SkiaSharp.NativeAssets.macOS/2.88.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-6Kn5TSkKlfyS6azWHF3Jk2sW5C4jCE5uSshM/5AbfFrR+5n6qM5XEnz9h4VaVl7LTxBvHvMkuPb/3bpbq0vxTw==",
-      "path": "skiasharp.nativeassets.macos/2.88.8",
-      "hashPath": "skiasharp.nativeassets.macos.2.88.8.nupkg.sha512"
-    },
-    "SkiaSharp.NativeAssets.Win32/2.88.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-O9QXoWEXA+6cweR4h3BOnwMz+pO9vL9mXdjLrpDd0w1QzCgWmLQBxa1VgySDITiH7nQndrDG1h6937zm9pLj1Q==",
-      "path": "skiasharp.nativeassets.win32/2.88.8",
-      "hashPath": "skiasharp.nativeassets.win32.2.88.8.nupkg.sha512"
-    },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",
       "serviceable": true,
@@ -1822,12 +1750,12 @@
       "path": "system.identitymodel.tokens.jwt/7.0.3",
       "hashPath": "system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512"
     },
-    "System.IO.Packaging/4.5.0": {
+    "System.IO.Packaging/8.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OjtW5pGp1E7KE3ontBrzy+nSFJCM6pcbVDdo3gg4DauTfdtZKdeKvMVlADF4fSY+OfXWUp4qCvOSxIltt37LbA==",
-      "path": "system.io.packaging/4.5.0",
-      "hashPath": "system.io.packaging.4.5.0.nupkg.sha512"
+      "sha512": "sha512-KYkIOAvPexQOLDxPO2g0BVoWInnQhPpkFzRqvNrNrMhVT6kqhVr0zEb6KCHlptLFukxnZrjuMVAnxK7pOGUYrw==",
+      "path": "system.io.packaging/8.0.1",
+      "hashPath": "system.io.packaging.8.0.1.nupkg.sha512"
     },
     "System.IO.Pipelines/9.0.10": {
       "type": "package",
@@ -1961,34 +1889,6 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
-    },
-    "Xceed.Document.NET/5.1.25458.6676": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-IBfhYCoUwpfGDKMXp4iBPBUXUjd/Qh8TSWgdcKVS+Tkxm1LbAbyfaO7ULwa7P+bPX4F9zQaoEhrWhb6Uplhnvw==",
-      "path": "xceed.document.net/5.1.25458.6676",
-      "hashPath": "xceed.document.net.5.1.25458.6676.nupkg.sha512"
-    },
-    "Xceed.Drawing.NET/1.0.25458.6676": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-sgK8Q+W56wdqjJ8rU0dSpg1q0RXQr4gvdrsVxLW4kPYtbckySQCQPXqr0mOCj+Z5G+MEE9fSERbkcznlqLrvGQ==",
-      "path": "xceed.drawing.net/1.0.25458.6676",
-      "hashPath": "xceed.drawing.net.1.0.25458.6676.nupkg.sha512"
-    },
-    "Xceed.Pdf/5.1.25458.6676": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-W1EdFaBPyNRtbbGnDA0NRZPxmps+EiU3o6HLFrBWPziZF7YPlrhsUm2xGReTgVTh1ueqJM66dZhgGlan3RG3Xg==",
-      "path": "xceed.pdf/5.1.25458.6676",
-      "hashPath": "xceed.pdf.5.1.25458.6676.nupkg.sha512"
-    },
-    "Xceed.Words.NET/5.1.25458.6676": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JTZobq4PcBJBt4IW0dpi3oqaPT5hncFAy9bAz5yMokq29/bpGK42YQkkYSO1m6nZYeC75HEVE7vWNamZfhvRTQ==",
-      "path": "xceed.words.net/5.1.25458.6676",
-      "hashPath": "xceed.words.net.5.1.25458.6676.nupkg.sha512"
     }
   }
 }
