@@ -1,24 +1,54 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../FormStyles.css";
 
-export default function Dashboard() { 
-    const [topCandidates, setTopCandidates] = useState([]); // Tilstand til at gemme topkandidater
+export default function Dashboard() {
+    const [topCandidates, setTopCandidates] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Hent top 5 kandidater ved component load, og når "Opdater Liste" knappen trykkes 
+    const token = localStorage.getItem("token");
+
+ 
+    // ❗ SIMPLE ACCESS CHECK – HR skal være logget ind
+   
+    if (!token) {
+        return (
+            <div className="page-container">
+                <div className="form-box">
+                    <h2 style={{ textAlign: "center" }}>Adgang nægtet</h2>
+                    <p style={{ textAlign: "center" }}>
+                        Du skal logge ind for at få adgang til dashboardet.
+                    </p>
+
+                    <div style={{ textAlign: "center", marginTop: "20px" }}>
+                        <a href="/login" className="submit-btn">
+                            Gå til login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // -------------------------------------------------------
+    // Fetch top candidates
+    // -------------------------------------------------------
     useEffect(() => {
-        fetchTopCandidates(); 
+        fetchTopCandidates();
     }, []);
 
     const fetchTopCandidates = async () => {
         try {
             setLoading(true);
-            const response = await fetch("http://localhost:5204/api/applications/top10"); // Henter top 10 kandidater fra API i backend 
+
+            const response = await fetch("http://localhost:5204/api/applications/top10", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
             if (response.ok) {
-                const data = await response.json(); // Parse JSON data svar fra API
-                // Tag kun top 5 kandidater
+                const data = await response.json();
                 setTopCandidates(data.slice(0, 5));
             } else {
                 setError("Kunne ikke hente kandidater");
@@ -31,7 +61,10 @@ export default function Dashboard() {
         }
     };
 
-    if (loading) { // Vis loading state 
+    // -------------------------------------------------------
+    // Loading state
+    // -------------------------------------------------------
+    if (loading) {
         return (
             <div className="page-container">
                 <div className="form-box">
@@ -41,17 +74,25 @@ export default function Dashboard() {
         );
     }
 
-    if (error) { // Vis fejlmeddelelse
+    // -------------------------------------------------------
+    // Error state
+    // -------------------------------------------------------
+    if (error) {
         return (
             <div className="page-container">
                 <div className="form-box">
                     <h2 style={{ textAlign: "center", color: "red" }}>{error}</h2>
-                    <button onClick={fetchTopCandidates}>Prøv igen</button>
+                    <button onClick={fetchTopCandidates} className="submit-btn">
+                        Prøv igen
+                    </button>
                 </div>
             </div>
         );
     }
 
+    // -------------------------------------------------------
+    // MAIN DASHBOARD VIEW
+    // -------------------------------------------------------
     return (
         <div className="page-container">
             <div className="form-box" style={{ maxWidth: "1200px" }}>
@@ -97,6 +138,19 @@ export default function Dashboard() {
                 <div style={{ textAlign: "center", marginTop: "30px" }}>
                     <button onClick={fetchTopCandidates} className="submit-btn">
                         Opdater Liste
+                    </button>
+                </div>
+
+                {/* Log ud knap */}
+                <div style={{ textAlign: "center", marginTop: "20px" }}>
+                    <button
+                        className="submit-btn"
+                        onClick={() => {
+                            localStorage.removeItem("token");
+                            window.location.href = "/login";
+                        }}
+                    >
+                        Log ud
                     </button>
                 </div>
             </div>
