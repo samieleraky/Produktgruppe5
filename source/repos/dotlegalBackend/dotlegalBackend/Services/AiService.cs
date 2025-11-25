@@ -3,11 +3,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using dotlegalBackend.Dto;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using dotlegalBackend.Dto;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 using OpenAI;
 using OpenAI.Chat;
-using UglyToad.PdfPig; //læser pdf
-using Xceed.Words.NET; //læser docx
+using UglyToad.PdfPig;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace dotlegalBackend.Services
 {
@@ -25,10 +33,10 @@ namespace dotlegalBackend.Services
         public async Task<double> CalculateMatchScoreAsync(ApplicationCreateDto dto)
         {
             // Læs filer som tekst
-            string cvText = await ExtractTextFromFile(dto.CV); // CV er påkrævet
+            string cvText = await ExtractTextFromFile(dto.CV);
             string ansogningText = await ExtractTextFromFile(dto.Ansogning);
-            string? portefoljeText = dto.Portefolje != null ? await ExtractTextFromFile(dto.Portefolje) : null; // valgfri
-            string? anbefalingText = dto.Anbefaling != null ? await ExtractTextFromFile(dto.Anbefaling) : null;
+            string portefoljeText = dto.Portefolje != null ? await ExtractTextFromFile(dto.Portefolje) : "";
+            string anbefalingText = dto.Anbefaling != null ? await ExtractTextFromFile(dto.Anbefaling) : "";
 
             // Byg prompt
             string prompt = $@"
@@ -44,11 +52,8 @@ Return ONLY a numeric match score between 0 and 100 (no text, no explanation).
 
 Applicant info:
 Name: {dto.Navn}
-Title: {dto.Titel}
-Education: {dto.Uddannelse}
-Experience: {dto.Erfaring}
-Skills: {dto.Kompetencer}
-Description: {dto.Beskrivelse}
+Education: {dto.Titel}
+Job Applied For: {dto.Job}
 
 Cover Letter:
 {ansogningText}
@@ -56,63 +61,83 @@ Cover Letter:
 CV:
 {cvText}
 
-Portfolio:
-{portefoljeText}
-
-Recommendation:
-{anbefalingText}
+{(string.IsNullOrEmpty(portefoljeText) ? "" : $"Portfolio:\n{portefoljeText}\n")}
+{(string.IsNullOrEmpty(anbefalingText) ? "" : $"Recommendation:\n{anbefalingText}")}
 ";
 
-            // Send til OpenAI
-            var messages = new List<ChatMessage>
+            try
             {
-                new SystemChatMessage("You are a precise scoring assistant. Return only a number."),
-                new UserChatMessage(prompt) 
-            };
+                var messages = new List<ChatMessage>
+                {
+                    new SystemChatMessage("You are a precise scoring assistant. Return only a number."),
+                    new UserChatMessage(prompt)
+                };
 
-            var response = await _client.CompleteChatAsync(messages);
-            var messageContent = response.Value.Content[0].Text.Trim();
+                var response = await _client.CompleteChatAsync(messages);
+                var messageContent = response.Value.Content[0].Text.Trim();
 
-            if (double.TryParse(messageContent, out double score)) // Prøv at parse som double, og clamp mellem 0 og 100
-                return Math.Clamp(score, 0, 100); 
+                if (double.TryParse(messageContent, out double score))
+                    return Math.Clamp(score, 0, 100);
 
-            Console.WriteLine($"⚠️ AI returned unexpected: {messageContent}");
-            return new Random().Next(60, 90); // fallback score
+                Console.WriteLine($"⚠️ AI returned unexpected: {messageContent}");
+                return 75;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"⚠️ AI error: {ex.Message}");
+                return new Random().Next(60, 85);
+            }
         }
 
-        // Hjælpefunktion til at udtrække tekst fra filer
         private async Task<string> ExtractTextFromFile(IFormFile file)
         {
-            if (file == null) return string.Empty; // Håndter null filer
+            if (file == null) return string.Empty;
 
-            var extension = Path.GetExtension(file.FileName).ToLower(); // understøttede formater: .pdf, .docx, .txt
-
-            using var stream = file.OpenReadStream();
-            using var reader = new StreamReader(stream);
+            var extension = Path.GetExtension(file.FileName).ToLower();
             string text = string.Empty;
 
-            if (extension == ".pdf")
+            try
             {
-                using var pdf = PdfDocument.Open(stream);
-                foreach (var page in pdf.GetPages())
-                    text += page.Text + "\n";
+                if (extension == ".pdf")
+                {
+                    using var stream = file.OpenReadStream();
+                    using var pdf = PdfDocument.Open(stream);
+                    foreach (var page in pdf.GetPages())
+                        text += page.Text + "\n";
+                }
+                else if (extension == ".docx")
+                {
+                    var tempPath = Path.GetTempFileName();
+                    try
+                    {
+                        using (var fs = new FileStream(tempPath, FileMode.Create))
+                            await file.CopyToAsync(fs);
+
+                        using (WordprocessingDocument doc = WordprocessingDocument.Open(tempPath, false))
+                        {
+                            var body = doc.MainDocumentPart?.Document?.Body;
+                            text = body?.InnerText ?? "";
+                        }
+                    }
+                    finally
+                    {
+                        if (File.Exists(tempPath))
+                            File.Delete(tempPath);
+                    }
+                }
+                else // .txt
+                {
+                    using var stream = file.OpenReadStream();
+                    using var reader = new StreamReader(stream);
+                    text = await reader.ReadToEndAsync();
+                }
             }
-            else if (extension == ".docx")
+            catch (Exception ex)
             {
-                // Kopiér filen til temp, fordi Xceed kræver fysisk sti
-                var tempPath = Path.GetTempFileName();
-                using (var fs = new FileStream(tempPath, FileMode.Create))
-                    await file.CopyToAsync(fs);
-                using var doc = DocX.Load(tempPath);
-                text = doc.Text;
-                File.Delete(tempPath);
-            }
-            else
-            {
-                text = await reader.ReadToEndAsync();
+                Console.WriteLine($"Failed to read {file.FileName}: {ex.Message}");
             }
 
-            return text.Length > 10000 ? text.Substring(0, 10000) : text; // Begræns længde for performance
+            return text.Length > 10000 ? text.Substring(0, 10000) : text;
         }
     }
 }
