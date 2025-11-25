@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navigation from "./Navigation";
 import Ansogning from "./Jobansøger/Ansogning";
 import Dashboard from "./HR/Dashboard";
 import "./App.css";
